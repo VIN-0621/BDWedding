@@ -1,0 +1,96 @@
+package cn.edu.fzu.sm.bdwedding.photographer;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import cn.edu.fzu.sm.bdwedding.admin.Admin;
+import cn.edu.fzu.sm.bdwedding.util.DbUtil;
+
+@WebServlet("/HunshaAddServlet")
+public class HunshaAddServlet extends HttpServlet{
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		
+		//获取网页传递的参数 该参数是提交（submit）表单的时候获取的
+				Admin a=new Admin();
+				String username=req.getParameter("aname");
+				String password=req.getParameter("apassword");
+				
+				//get&set
+				a.setaName(username);
+				a.setaPassword(password);
+				String sql="insert into admin(aname,apassword)"+
+						" values ('"+a.getaName()+"','"+a.getaPassword()+"')";
+
+				String sql1="select aid from admin where aid='"+a.getaId()+"'";
+				try
+				{
+					Statement stmt=DbUtil.getConn().createStatement();//获取数据库的连接，并创建一个数据库连接状态
+					ResultSet rs=stmt.executeQuery(sql1);
+					if(rs.next()){
+						req.setAttribute("msg", "Exist!");
+					}
+					else{
+						stmt.executeUpdate(sql);  //执行数据库插入操作
+						req.getRequestDispatcher("login.jsp").forward(req,resp);  //登录跳转
+					}
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+		PhotoGrapher pg=new PhotoGrapher();
+		String pSortname=req.getParameter("psortname");
+		String pName=req.getParameter("pName");
+		String pSortaddress=req.getParameter("psortaddress");
+		String pPay=req.getParameter("ppay");
+		String pIncome=req.getParameter("pincome");
+		String sql="select pid,psortname,pname,psortaddress,ppay,pincome from photographer";
+	
+		try{
+			Statement stmt=DbUtil.getConn().createStatement();//获取数据库的连接，并创建一个数据库连接状态
+			ResultSet rs = stmt.executeQuery(sql);//执行数据库的查询语句
+			List<PhotoGrapher> pg=null;
+			while(rs.next()){
+				if(pg==null)
+				{
+					pg=new ArrayList<PhotoGrapher>();
+				}
+				PhotoGrapher p=new PhotoGrapher();
+				p.setpId(rs.getInt("pid"));
+				p.setpSortname(rs.getString("psortname"));
+				p.setpName(rs.getString("pname"));
+				p.setpSortaddress(rs.getString("psortaddress"));
+				p.setpPay(rs.getString("ppay"));
+				p.setpIncome(rs.getString("pincome"));			
+				pg.add(p);
+			}
+			req.setAttribute("pgHunshalist",pg);
+			req.getRequestDispatcher("/1-hunshataoxi.jsp").forward(req, resp);
+			
+		}
+		catch(Exception e){
+		e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(req, resp);
+	}
+}
+

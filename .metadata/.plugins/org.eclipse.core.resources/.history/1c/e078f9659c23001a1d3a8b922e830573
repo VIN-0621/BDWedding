@@ -1,0 +1,61 @@
+package cn.edu.fzu.sm.bdwedding.staff;
+
+public class Staff {
+	private int sId;
+	private String sName;
+	private String sAge;
+	private String sSex;
+	private String sPost;
+	private String sPhone;
+	private String sWage;
+	public int getsId() {
+		return sId;
+	}
+	public void setsId(int sId) {
+		this.sId = sId;
+	}
+	public String getsName() {
+		return sName;
+	}
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
+	
+	public String getsAge() {
+		return sAge;
+	}
+	public void setsAge(String sAge) {
+		this.sAge = sAge;
+	}
+	public String getsSex() {
+		return sSex;
+	}
+	public void setsSex(String sSex) {
+		this.sSex = sSex;
+	}
+	public String getsPost() {
+		return sPost;
+	}
+	public void setsPost(String sPost) {
+		this.sPost = sPost;
+	}
+	public String getsPhone() {
+		return sPhone;
+	}
+	public void setsPhone(String sPhone) {
+		this.sPhone = sPhone;
+	}
+	public String getsWage() {
+		return sWage;
+	}
+	public void setsWage(String sWage) {
+		this.sWage = sWage;
+	}
+	@Override
+	public String toString() {
+		return "Staff [sId=" + sId + ", sName=" + sName + ", sAge=" + sAge
+				+ ", sSex=" + sSex + ", sPost=" + sPost + ", sPhone=" + sPhone
+				+ ", sWage=" + sWage + "]";
+	}
+	
+}

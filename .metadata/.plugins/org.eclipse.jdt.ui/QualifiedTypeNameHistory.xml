@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="cn.edu.fzu.sm.bdwedding.util.DbUtil"/>
+<fullyQualifiedTypeName name="cn.edu.fzu.sm.bdwedding.photographer.PhotoGrapher"/>
+<fullyQualifiedTypeName name="cn.edu.fzu.sm.bdwedding.staff.Staff"/>
+<fullyQualifiedTypeName name="java.io.PrintWriter"/>
+</qualifiedTypeNameHistroy>

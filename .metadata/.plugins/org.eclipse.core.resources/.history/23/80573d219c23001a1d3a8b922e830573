@@ -1,0 +1,30 @@
+package cn.edu.fzu.sm.bdwedding.util;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+public class DbUtil {		
+		static String JDBC_DRIVER="com.mysql.jdbc.Driver";
+		static String 
+		DB_URL="jdbc:mysql://localhost:3306/bdgallery" +
+				"?useUnicode=true&charactorEncoding=UTF-8";
+		static String USER="root"; 
+		static String PASS="haosql"; 
+		static Connection conn=null; 
+		public static Connection getConn(){  
+			if(conn==null){
+				try {  
+					try {
+						Class.forName(JDBC_DRIVER);
+						conn=DriverManager.getConnection(DB_URL,USER,PASS); 
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}//娉ㄥ唽鏁版嵁搴撹繛鎺ラ┍鍔�
+				} catch (SQLException e) {				
+					e.printStackTrace();
+				}
+			}
+			return conn;  
+		}
+	
+}
